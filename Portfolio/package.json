@@ -1,0 +1,15 @@
+{ 
+  "name": "freecodecamp-playground", 
+  "version": "1.0.0",   
+  "scripts": {
+    "dev": "npm run lite",
+    "lite": "lite-server"
+  },
+  "license": "ISC",
+  "dependencies": {
+  "bootstrap": "^3.3.7"
+  },
+   "devDependencies": { 
+     "lite-server": "^2.2.2" 
+   } 
+}
