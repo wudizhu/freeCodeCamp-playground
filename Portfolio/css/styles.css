@@ -2,6 +2,7 @@ body {
     margin-bottom:30px;
     margin-top: 70px;
     position: relative;
+
 }
 .caption {
     font-size: 2em; 
@@ -44,5 +45,64 @@ body {
   top: 0;
   z-index: 9999 !important;
 }
+
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+ul.nav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.nav li a:hover {background-color: #555;}
+
+ul.nav li a:focus {background-color: #555;}
+
+
+ul.nav li.icon {display: none;}
+
+
+@media screen and (max-width:680px) {
+    ul.nav li:not(:first-child) {display: none;}
+
+    ul.nav li.icon {
+        display: inline-block;
+        float: right;
+    }
+}
+
+
+@media screen and (max-width:680px) {
+  ul.nav.responsive {position: relative;}
+  ul.nav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.nav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.nav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
 
 

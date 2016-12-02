@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="css\styles.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts\portfolio.js"></script>
 
 
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-    <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="70">
+    <!--<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="70">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" aria-controls="navbar" aria-expanded="false" data-target="#navbar"
@@ -34,7 +35,16 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>-->
+<ul class="nav responsive" id="navbar">
+    <li><a class="active" href="#about">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#contact">About</a></li>
+    <li class="icon">
+        <a id="nav-icon" href="javascript:void(0);" style="font-size:15px;" onclick="showNavDropdown()">☰</a>
+    </li>
+</ul>
 
 
 
@@ -85,6 +95,10 @@
 
     <div class="container-fluid text-center" id="contact">
         <h2>My Contact information</h2>
+        <div>
+            <h3>Feel free to contact me, I promise to reply A.S.A.P. :)</h3>
+        </div>
+
         <h2>Contact me</h2>
         <form id="contact-form">
             <div class="form-group">
@@ -104,7 +118,7 @@
             </div>
             
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-12">
+                <div class="col-sm-12">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
             </div>
