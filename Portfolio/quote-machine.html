@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>freeCodeCamp playground</title>
     <meta charset="UTF-8">
@@ -11,28 +12,106 @@
     <script type="text/javascript" src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
 </head>
 
-    <body>
+
+
+<body>
+    <script>
+        var x;
+        var i=0;
+        displayCDWithJQuery(i);
+
+
+        /* This is a javascript XMLHttpRequest call for learning. It is replaced by the jquery ajax.
+        // function displayItem(i) {
+        //     var xmlhttp = new XMLHttpRequest();
+        //     xmlhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status === 200) {
+        //             handleItem(this, i);
+        //         }
+        //         // else 
+        //         // {
+        //         //     document.getElementById("quote-text").innerHTML = "Ajax failed";
+        //         // }
+        //     }
+        //     xmlhttp.open("GET", "data/cd_catalog.xml", true);
+        //     xmlhttp.send();
+        // }
+        */
+
+        function displayCDWithJQuery(i) {
+            $.ajax({
+                url: "data/cd_catalog.xml",
+                type: "GET",
+                dataType: "xml"
+            })
+            .done(function(result, status, xhr) {handleItem(result,i);})
+            .fail(function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+            })
+            .always(function(xhr,status){
+                console.log("The reqest is complete!");
+            })
+        }
+
+        function handleItem(xml, i) {
+            //get xml data from response
+            console.log(xml);
+
+            //navigate throw xml document
+            x = xml.getElementsByTagName("CD");
+            document.getElementById("quote-text").innerHTML = 
+            "Title: " + 
+                       x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue; 
+            document.getElementById("quote-author").innerHTML = 
+            "Artist: " + 
+            x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue; 
+        }
+
+        function nextQuote() {
+            if (i < x.length) {
+                i++;
+            }
+            displayCDWithJQuery(i);
         
-    
-        <div class="container" id="quote-machine">
-            <div class="row"></div>
-                <div class="quote-box col-md-8 col-md-offset-2">
-                    <div id="quote-text">
-                        This is a quote!
-                    </div>
-                    <div id="quote-author">
-                        by Author
-                    </div>
-                    <div id="buttons">
-                        <a class="button" id="tweet-quote" title="Tweet this quote!" target="_blank" href="https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;" style="background-color: darkgreen; padding: 5px">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <button id="new-quote" style="float:right">New quote</button>
-                    </div>
+        }
+
+        function previousQuote() {
+            if (i > 0) {
+                i--;
+            }
+            displayCDWithJQuery(i);
+        
+        }
+
+
+    </script>
+
+
+    <div class="container" id="quote-machine">
+        <div class="row"></div>
+            <div class="quote-box col-md-8 col-md-offset-2">
+                <div id="quote-text">
+                    This is a quote!
+                </div>
+                <div id="quote-author">
+                    by Author
+                </div>
+                <div id="buttons">
+                    <a class="button" id="tweet-quote" title="Tweet this quote!" target="_blank" href="https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;"
+                        style="background-color: darkgreen; padding: 5px">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <button id="next-quote" style="float:right" onclick="nextQuote()">Next quote</button>
+                    <button id="previous-quote" style="float:right" onclick="previousQuote()">Previous quote</button>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
 
 <head>
