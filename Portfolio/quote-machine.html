@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css\styles.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="node_modules\jquery\dist\jquery.min.js"></script>
     <script type="text/javascript" src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib\wiki-quote.js"></script>
 </head>
 
 
@@ -19,25 +20,53 @@
         var x;
         var i=0;
         displayCDWithJQuery(i);
+        // getWikiQuote();
 
+        //Ajax call to the wikiquote with using the library
+        // function getWikiQuote() {
+        //     var API_URL = "http://en.wikiquote.org/w/api.php";
+        //     $.ajax({
+        //         url: API_URL,
+        //         type: "GET",
+        //         dataType: "jsonp",
+        //     data: {
+        //         format: "json",
+        //         action: "query",
+        //         redirects: "",
+        //         list: "random",
+        //         rnnamespace: "0"
+        //         },   
+        //     })
+        //     .done(function(result, status, xhr) {processData(result, status);})
+        //     .fail(errorHandler(function(xhr, status) {errorHandler(xhr,status);})
 
-        /* This is a javascript XMLHttpRequest call for learning. It is replaced by the jquery ajax.
-        // function displayItem(i) {
-        //     var xmlhttp = new XMLHttpRequest();
-        //     xmlhttp.onreadystatechange = function() {
-        //         if (this.readyState == 4 && this.status === 200) {
-        //             handleItem(this, i);
-        //         }
-        //         // else 
-        //         // {
-        //         //     document.getElementById("quote-text").innerHTML = "Ajax failed";
-        //         // }
-        //     }
-        //     xmlhttp.open("GET", "data/cd_catalog.xml", true);
-        //     xmlhttp.send();
         // }
-        */
+           
+            
+        function processData(result,status) {
+            console.log(result);
+        }
 
+        function errorHandler(xhr, status){
+            console.log(status);
+        }
+
+            // WikiquoteApi.queryTitles("love", 
+            // function(pageid){ console.log(pageid);
+            //     WikiquoteApi.getSectionsForPage(pageid, 
+            //         function(result){
+            //             console.log(pageid, result.sections);
+            //             WikiquoteApi.getQuotesForSection(pageid, result.sections,
+            //             function(result){
+            //                 console.log(result);
+            //             })
+            //         })
+            //      });
+
+        
+
+        
+        /** test ajax call with local data file **/
         function displayCDWithJQuery(i) {
             $.ajax({
                 url: "data/cd_catalog.xml",
@@ -56,7 +85,24 @@
             })
         }
 
-        function handleItem(xml, i) {
+                /* This is a javascript XMLHttpRequest call for learning. It is replaced by the jquery ajax.*/
+        function displayItem(i) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status === 200) {
+                    handleItem(this, i);
+                }
+                // else 
+                // {
+                //     document.getElementById("quote-text").innerHTML = "Ajax failed";
+                // }
+            }
+            xmlhttp.open("GET", "data/cd_catalog.xml", true);
+            xmlhttp.send();
+        }
+        
+
+        function handleItemXml(xml, i) {
             //get xml data from response
             console.log(xml);
 
