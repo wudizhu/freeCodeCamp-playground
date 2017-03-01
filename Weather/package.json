@@ -4,7 +4,7 @@
   "description": "weather app for freecodecamp challenges using Polymer",
   "main": "weather.html",
   "scripts": {
-    "test": "npm weather test"
+    "dev" : "lite-server"
   },
   "repository": {
     "type": "git",
@@ -18,4 +18,5 @@
   "dependencies": {
   "bootstrap": "^3.3.7"
   }
+
 }
