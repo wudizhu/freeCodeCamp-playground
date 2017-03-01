@@ -1,7 +1,6 @@
         //Ajax call to the wikiquote with using the library
          var API_URL = "http://en.wikiquote.org/w/api.php";
-        function getWikiQuote() {
-           
+        function getWikiQuote() {           
             $.ajax({
                 url: API_URL,
                 type: "GET",
@@ -52,30 +51,29 @@
         }
 
         function processQuote(data) {
-            console.log(data);
-            // document.getElementById("quote-text").innerHTML =
-             // $("#quote-text").innerHTML= '"' + data.quotes[0] + '"'; 
-             console.log($("#quote-text")[0].innerHTML);
+            if (typeof data === 'undefined' || typeof data.quotes[0] === 'undefined' || data.quotes[0] === "") 
+            {
+                getWikiQuote();
+            } else {
+                document.getElementById("quote-text").innerHTML =
+                '"' + data.quotes[0] + '"';  
+                document.getElementById("quote-author").innerHTML = "-" + data.titles;
+                $('#tweet-quote').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + data.quotes[0] + '" ' + data.titles))            
+            }
             
-            $("#quote-text").innerHTML= "somehting";
-            $('#quote-author').innerHTML = "-" + data.titles;
+
         }
+        function previousQuote() {
+            getWikiQuote();
 
-
-
-
-   
-
-
+        }
+        
         function nextQuote() {
             getWikiQuote();
 
         }
 
-        function previousQuote() {
-            getWikiQuote();
-
-        }
+       /******lib for the wikiquote thanks to natetyler/wikiquotes-api****/
 
         queryTitles = function(titles, success, error) {
             $.ajax({
