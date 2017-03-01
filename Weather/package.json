@@ -14,5 +14,8 @@
     "weather"
   ],
   "author": "Feng",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+  "bootstrap": "^3.3.7"
+  }
 }
